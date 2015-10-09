@@ -115,6 +115,18 @@ h3 {
     vertical-align: middle;
 }
 
+.modal-backdrop
+{
+    background-color: #FFF !important;
+}
+
+#txtContent {
+    text-align: center;
+    color: #0000ff;
+    font-size: 32px;
+    opacity: 1 !important;
+}
+
 /* app */
 #btnSpin {
     display: none;
@@ -127,8 +139,10 @@ h3 {
 
 .goodRestaurant {
     color: #0000ff;
+    margin-bottom: 5px;
 }
 
 .badRestaurant {
-    color: red
+    color: red;
+    margin-bottom: 5px;
 }

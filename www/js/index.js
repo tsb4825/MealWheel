@@ -52,6 +52,25 @@ var app = {
                 var isGoodRestaurant = shouldAddGoodRestaurant();
                 addRestaurant($('#txtRestaurant').val(), isGoodRestaurant);
             });
+
+            $('#btnSpin').click(function () {
+                $("#txtContent").text("Meal");
+                $("#fullScreenDisplay").modal('show');
+                setTimeout(function() {
+                    $("#txtContent").text("Wheel");
+                    setTimeout(function () {
+                        $("#txtContent").text("of Destiny");
+                        setTimeout(function() {
+                            $("#fullScreenDisplay").modal('hide');
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            });
+
+            $('.modal-vcenter').on('show.bs.modal', function (e) {
+                centerModals($(this));
+            });
+            $(window).on('resize', centerModals);
         }, 2000);
 
         function shouldAddGoodRestaurant() {
@@ -77,9 +96,25 @@ var app = {
             $("#lstRestaurants").append("<li class=\"" + textClass + "\">" + text + " <button type=\"button\" class=\"btn btn-danger btn-sm\" onclick=\"app.deleteRestaurant('" + text + "', " + isGoodRestaurant + ");\">&#45;</button></li>");
 
             if (wheel.wedges.length >= 6) {
-                $("#btnAddRestaurant").hide();
+                $("#btnAddModal").hide();
                 $("#btnSpin").show();
             }
+        }
+
+        function centerModals($element) {
+            var $modals;
+            if ($element.length) {
+                $modals = $element;
+            } else {
+                $modals = $('.modal-vcenter:visible');
+            }
+            $modals.each(function (i) {
+                var $clone = $(this).clone().css('display', 'block').appendTo('body');
+                var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
+                top = top > 0 ? top : 0;
+                $clone.remove();
+                $(this).find('.modal-content').css("margin-top", top);
+            });
         }
     },
     // Update DOM on a Received Event
