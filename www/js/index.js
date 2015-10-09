@@ -18,14 +18,14 @@
  */
 var app = {
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         this.bindEvents();
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
+    bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
@@ -33,27 +33,70 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-        setTimeout(function() {
-            navigator.splashscreen.hide();
+        setTimeout(function () {
+            //navigator.splashscreen.hide();
 
-            
+            $('#addWedgeModal').on('shown.bs.modal', function () {
+                $('#txtRestaurant').focus();
+            })
+
+            $('#btnAddModal').click(function() {
+                $("#txtRestaurant").val("");
+                var isGoodRestaurant = shouldAddGoodRestaurant();
+                isGoodRestaurant
+                    ? $("#modalTitle").html("Add a <span class=\"goodRestaurant\">good</span> restaurant")
+                    : $("#modalTitle").html("Now, add a <span class=\"badRestaurant\">bad</span> restaurant");
+            });
+
+            $('#btnAddRestaurant').click(function () {
+                var isGoodRestaurant = shouldAddGoodRestaurant();
+                addRestaurant($('#txtRestaurant').val(), isGoodRestaurant);
+            });
         }, 2000);
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
 
-    },
-    addRestaurant: function(text) {
-        wheel.addWedge(text);
-        $("#txtRestaurant").val("");
-        $("#lstRestaurants").append("<li>" + text + " <button type=\"button\" id=\"btnAddRestaurant\" class=\"btn btn-danger\" onclick=\"app.deleteRestaurant('" + text + "');\">&#45;</button></li>");
+        function shouldAddGoodRestaurant() {
+            var isGoodRestaurant = true;
+            if (wheel.wedges.length >= 5) {
+                return false;
+            }
 
-        if (wheel.wedges.count >= 6) {
-            $("#btnAddRestaurant").hide();
+            return true;
+        }
+
+        function addRestaurant(text, isGoodRestaurant) {
+            var textClass = "";
+            if (isGoodRestaurant) {
+                this.goodRestaurants++;
+                textClass = "goodRestaurant";
+            } else {
+                this.badRestaurants++;
+                textClass = "badRestaurant";
+            }
+
+            wheel.addWedge(text);
+            $("#lstRestaurants").append("<li class=\"" + textClass + "\">" + text + " <button type=\"button\" class=\"btn btn-danger btn-sm\" onclick=\"app.deleteRestaurant('" + text + "', " + isGoodRestaurant + ");\">&#45;</button></li>");
+
+            if (wheel.wedges.length >= 6) {
+                $("#btnAddRestaurant").hide();
+                $("#btnSpin").show();
+            }
         }
     },
-    deleteRestaurant: function(text) {
+    // Update DOM on a Received Event
+    receivedEvent: function (id) {
+
+    },
+    deleteRestaurant: function (text, isGoodRestaurant) {
+        if (isGoodRestaurant) {
+            this.goodRestaurants--;
+        } else {
+            this.badRestaurants--;
+        }
         wheel.removeWedge(text);
-        $("li:contains('" + text + "')").remove();
-    }
+        $("li:contains('" + text + "'):first").remove();
+        $("#btnAddRestaurant").show();
+        $("#btnSpin").hide();
+    },
+    goodRestaurants: 0,
+    badRestaurants: 0
 };

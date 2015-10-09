@@ -20,39 +20,40 @@
     under the License.
 -->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Meal Wheel of Destiny</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    </head>
-    <body>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Meal Wheel of Destiny</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+<body>
     <div>
         <h1>Meal Wheel of Destiny</h1>
     </div>
-    <div>
-        <h3 style="display:inline">Restaurants</h3>
-        <button type="button" id="btnAddRestaurant" class="btn btn-success" data-toggle="modal" data-target="#addWedgeModal">&#43;</button>
+    <div class="content">
+        <h3>Restaurants</h3>
+        <button type="button" id="btnAddModal" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addWedgeModal" onclick="">&#43;</button>
         <ol id="lstRestaurants"></ol>
+        <button type="button" id="btnSpin" class="btn btn-sm btn-primary">Spin the Wheel!</button>
     </div>
     <div class="modal fade modal-vcenter" id="addWedgeModal" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 id="modalTitle" class="modal-title">Add a restaurant</h4>
+                    <h4 id="modalTitle" class="modal-title">Add a <span class="goodRestaurant">good</span> restaurant</h4>
                 </div>
                 <div class="modal-body">
-                    <input class="form-control" id="txtRestaurant" type="text"/>
+                    <input class="form-control" id="txtRestaurant" type="text" />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="app.addRestaurant($('#txtRestaurant').val());">Add</button>
+                    <button type="button" id="btnAddRestaurant" class="btn btn-default" data-dismiss="modal">Add</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -67,5 +68,5 @@
     <script type="text/javascript">
         app.initialize();
     </script>
-    </body>
+</body>
 </html>

@@ -48,13 +48,6 @@ body {
 html, body, .container-table {
     height: 100%;
 }
-.container-table {
-    display: table;
-}
-.vertical-center-row {
-    display: table-cell;
-    vertical-align: middle;
-}
 
 h1 {
     font-size:24px;
@@ -65,12 +58,9 @@ h1 {
     text-align:center;
 }
 
-.container-table {
-    display: table;
-}
-.vertical-center-row {
-    display: table-cell;
+h3 {
     vertical-align: middle;
+    display: inline;
 }
 
 .event {
@@ -107,4 +97,38 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+
+/*modal classes*/
+.container-table {
+    display: table;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+.container-table {
+    display: table;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* app */
+#btnSpin {
+    display: none;
+}
+
+.content {
+    text-align: center;
+    list-style-position:inside;
+}
+
+.goodRestaurant {
+    color: #0000ff;
+}
+
+.badRestaurant {
+    color: red
 }
