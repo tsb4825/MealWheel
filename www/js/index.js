@@ -35,6 +35,9 @@ var app = {
     onDeviceReady: function () {
         setTimeout(function () {
             //navigator.splashscreen.hide();
+            for (var i = 0; i < 6; i++) {
+                addRestaurant("asdf", i == 5 ? false: true);
+            }
 
             $('#addWedgeModal').on('shown.bs.modal', function () {
                 $('#txtRestaurant').focus();
@@ -62,6 +65,8 @@ var app = {
                         $("#txtContent").text("of Destiny");
                         setTimeout(function() {
                             $("#fullScreenDisplay").modal('hide');
+                            showScreen("home", "wheel");
+                            wheel.spin();
                         }, 1000);
                     }, 1000);
                 }, 1000);
@@ -72,6 +77,11 @@ var app = {
             });
             $(window).on('resize', centerModals);
         }, 2000);
+
+        function showScreen(previousScreenName, newScreenName) {
+            $("#" + previousScreenName + "Screen").hide();
+            $("#" + newScreenName + "Screen").show();
+        }
 
         function shouldAddGoodRestaurant() {
             var isGoodRestaurant = true;
