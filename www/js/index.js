@@ -35,9 +35,9 @@ var app = {
     onDeviceReady: function () {
         setTimeout(function () {
             //navigator.splashscreen.hide();
-            for (var i = 0; i < 6; i++) {
-                addRestaurant("asdf", i == 5 ? false: true);
-            }
+            //for (var i = 0; i < 6; i++) {
+            //    addRestaurant("asdf", i == 5 ? false: true);
+            //}
 
             $('#addWedgeModal').on('shown.bs.modal', function () {
                 $('#txtRestaurant').focus();
@@ -66,17 +66,35 @@ var app = {
                         setTimeout(function() {
                             $("#fullScreenDisplay").modal('hide');
                             showScreen("home", "wheel");
-                            wheel.spin();
+                            var width = 667;
+                            var height = 375;
+                            wheel.spin((window.screen.width < width) ? window.screen.width : width, (window.screen.height < height) ? window.screen.height : height, onStoppedSpinning);
                         }, 1000);
                     }, 1000);
                 }, 1000);
             });
+
+            $('#btnBackToHome').click(function () {
+                showScreen("wheel", "home");
+            });
+
 
             $('.modal-vcenter').on('show.bs.modal', function (e) {
                 centerModals($(this));
             });
             $(window).on('resize', centerModals);
         }, 2000);
+
+        function onStoppedSpinning(wedge) {
+            var text;
+            if (wedge[0].isGoodRestaurant) {
+                text = "You're going to ";
+            }else{
+                text = "Oh no!  You're going to ";
+            }
+            $("#txtWinner").text(text + wedge[0].text);
+            $("#btnBackToHome").show();
+        }
 
         function showScreen(previousScreenName, newScreenName) {
             $("#" + previousScreenName + "Screen").hide();
@@ -102,7 +120,7 @@ var app = {
                 textClass = "badRestaurant";
             }
 
-            wheel.addWedge(text);
+            wheel.addWedge(text, isGoodRestaurant);
             $("#lstRestaurants").append("<li class=\"" + textClass + "\">" + text + " <button type=\"button\" class=\"btn btn-danger btn-sm\" onclick=\"app.deleteRestaurant('" + text + "', " + isGoodRestaurant + ");\">&#45;</button></li>");
 
             if (wheel.wedges.length >= 6) {

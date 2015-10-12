@@ -39,7 +39,7 @@
         </div>
         <div class="content">
             <h3>Restaurants</h3>
-            <button type="button" id="btnAddModal" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addWedgeModal" onclick="">&#43;</button>
+            <button type="button" id="btnAddModal" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addWedgeModal">&#43;</button>
             <ol id="lstRestaurants"></ol>
             <button type="button" id="btnSpin" class="btn btn-sm btn-primary">Spin the Wheel!</button>
         </div>
@@ -73,6 +73,8 @@
     <div id="wheelScreen" style="display:none">
         <h1>Meal Wheel of Destiny</h1>
         <div id="container"></div>
+        <p id="txtWinner" class="winning"></p>
+        <button type="button" id="btnBackToHome" class="btn btn-primary btn-sm">Start Again</button>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/kinetic-v4.4.1.min.js"></script>

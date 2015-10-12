@@ -3,7 +3,7 @@ var wheel = {
     angularVelocity: 6,
     angularVelocities: [],
     controlled: false,
-    angularFriction: 0.2,
+    angularFriction: 0.22,
     target: null, 
     activeWedge: null, 
     stage: null, 
@@ -11,8 +11,8 @@ var wheel = {
     wheel: null, 
     pointer: null,
     wedges: [],
-    addWedge: function(name) {
-        this.wedges.push(name);
+    addWedge: function (name, isGoodRestaurant) {
+        this.wedges.push({ text: name, isGoodRestaurant: isGoodRestaurant });
     },
     removeWedge: function(name) {
         var index = this.wedges.indexOf(name);
@@ -20,18 +20,19 @@ var wheel = {
             this.wedges.splice(index, 1);
         }
     },
-    spin: function () {
+    spin: function (width, height, callback) {
         var self = this;
         init();
 
+        var hasCalledBack = false;
         var anim = new Kinetic.Animation(animate, self.layer);
         anim.start();
 
         function init() {
             self.stage = new Kinetic.Stage({
                 container: 'container',
-                width: 578,
-                height: 200
+                width: width - 40,
+                height: height - 125
             });
             self.layer = new Kinetic.Layer();
             self.wheel = new Kinetic.Group({
@@ -40,7 +41,7 @@ var wheel = {
             });
 
             for (var n = 0; n < self.wedges.length; n++) {
-                addWedgeToWheel(n, self.wedges[n].name);
+                addWedgeToWheel(n, self.wedges[n].text);
             }
             self.pointer = new Kinetic.Wedge({
                 fillRadialGradientStartPoint: 0,
@@ -67,12 +68,8 @@ var wheel = {
             self.layer.add(self.pointer);
             self.stage.add(self.layer);
 
-            // bind events
-            bind();
-
             function addWedgeToWheel(n, text) {
                 var s = getRandomColor();
-                var reward = getRandomReward();
                 var r = s[0];
                 var g = s[1];
                 var b = s[2];
@@ -106,7 +103,7 @@ var wheel = {
                 wedge.add(wedgeBackground);
 
                 var text = new Kinetic.Text({
-                    text: reward,
+                    text: formatText(text),
                     fontFamily: 'Calibri',
                     fontSize: 50,
                     fill: 'white',
@@ -125,8 +122,8 @@ var wheel = {
                             image: img,
                             listening: false,
                             rotation: (Math.PI + angle) / 2,
-                            x: 380,
-                            y: 30
+                            x: 350,
+                            y: 185
                         });
 
                         wedge.add(cachedText);
@@ -137,6 +134,16 @@ var wheel = {
                 wedge.startRotation = wedge.getRotation();
 
                 self.wheel.add(wedge);
+                self.wedges[n].id = wedge.children[0]._id;
+
+                function formatText(text) {
+                    var newString = "";
+                    for(var index = 0; index < text.length; index++)
+                    {
+                        newString += text[index] + "\n";
+                    }
+                    return newString;
+                }
 
                 function getRandomColor() {
                     var r = 100 + Math.round(Math.random() * 55);
@@ -154,60 +161,6 @@ var wheel = {
                     color[randIndex] = 0;
                     return color;
                 }
-
-                function getRandomReward() {
-                    var mainDigit = Math.round(Math.random() * 9);
-                    return mainDigit + '\n0\n0';
-                }
-            }
-
-            function bind() {
-                self.wheel.on('mousedown', function (evt) {
-                    self.angularVelocity = 0;
-                    self.controlled = true;
-                    self.target = evt.targetNode;
-                });
-                // add listeners to container
-                document.body.addEventListener('mouseup', function() {
-                    self.controlled = false;
-                    self.angularVelocity = getAverageAngularVelocity() * 5;
-
-                    if (self.angularVelocity > 20) {
-                        self.angularVelocity = 20;
-                    } else if (self.angularVelocity < -20) {
-                        self.angularVelocity = -20;
-                    }
-
-                    self.angularVelocities = [];
-                }, false);
-
-                document.body.addEventListener('mousemove', function(evt) {
-                    var mousePos = self.stage.getMousePosition();
-                    if (self.controlled && mousePos && self.target) {
-                        var x = mousePos.x - self.wheel.getX();
-                        var y = mousePos.y - self.wheel.getY();
-                        var atan = Math.atan(y / x);
-                        var rotation = x >= 0 ? atan : atan + Math.PI;
-                        var targetGroup = self.target.getParent();
-
-                        self.wheel.setRotation(rotation - targetGroup.startRotation - (self.target.getAngle() / 2));
-                    }
-                }, false);
-
-                function getAverageAngularVelocity() {
-                    var total = 0;
-                    var len = self.angularVelocities.length;
-
-                    if (len === 0) {
-                        return 0;
-                    }
-
-                    for (var n = 0; n < len; n++) {
-                        total += self.angularVelocities[n];
-                    }
-
-                    return total / len;
-                }
             }
         }
 
@@ -216,15 +169,8 @@ var wheel = {
             var angularVelocityChange = self.angularVelocity * frame.timeDiff * (1 - self.angularFriction) / 1000;
             self.angularVelocity -= angularVelocityChange;
 
-            if (self.controlled) {
-                if (self.angularVelocities.length > 10) {
-                    self.angularVelocities.shift();
-                }
-
-                self.angularVelocities.push((self.wheel.getRotation() - lastRotation) * 1000 / frame.timeDiff);
-            } else {
-                self.wheel.rotate(frame.timeDiff * self.angularVelocity / 1000);
-            }
+            self.wheel.rotate(frame.timeDiff * self.angularVelocity / 1000);
+            
             lastRotation = self.wheel.getRotation();
 
             // activate / deactivate wedges based on point intersection
@@ -250,6 +196,13 @@ var wheel = {
                     shape.setFillPriority('fill');
                     self.activeWedge = shape;
                 }
+            }
+
+            if (self.angularVelocity <= .015 && !hasCalledBack) {
+                callback(self.wedges.filter(function (value) {
+                    return value.id == self.activeWedge._id;
+                }));
+                hasCalledBack = true;
             }
         }
     }

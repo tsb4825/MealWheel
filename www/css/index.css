@@ -145,3 +145,19 @@ h3 {
     color: red;
     margin-bottom: 5px;
 }
+
+#container {
+	margin-left: 10px;
+}
+
+.winning {
+	text-align: center;
+	margin-top: 10px;
+}
+
+#btnBackToHome{
+	position: absolute;
+    right: 10px;
+    bottom: 45px;
+	display: none;
+}
