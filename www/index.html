@@ -70,12 +70,14 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
     </div>
-    <div id="wheelScreen" style="display:none">
+    <div id="wheelScreen" style="display: none">
         <h1>Meal Wheel of Destiny</h1>
         <div id="container"></div>
         <p id="txtWinner" class="winning"></p>
         <button type="button" id="btnBackToHome" class="btn btn-primary btn-sm">Start Again</button>
     </div>
+    <audio id="win" src="res/audio/ATone.wav" type="audio/wav"></audio>
+    <audio id="lose" src="res/audio/WhatYouEatin.wav" type="audio/wav"></audio>   
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/kinetic-v4.4.1.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>

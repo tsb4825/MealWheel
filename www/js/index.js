@@ -89,8 +89,10 @@ var app = {
             var text;
             if (wedge[0].isGoodRestaurant) {
                 text = "You're going to ";
+                $("#win")[0].play();
             }else{
                 text = "Oh no!  You're going to ";
+                $("#lose")[0].play();
             }
             $("#txtWinner").text(text + wedge[0].text);
             $("#btnBackToHome").show();
