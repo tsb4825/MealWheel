@@ -1,6 +1,6 @@
 // JavaScript source code
 var wheel = {
-    angularVelocity: 6,
+    angularVelocity: (Math.random() * (20-6)) + 6,
     angularFriction: 0.22,
     activeWedge: null, 
     stage: null, 
@@ -9,7 +9,7 @@ var wheel = {
     pointer: null,
     wedges: [],
     reset: function () {
-        this.angularVelocity = 6;
+        this.angularVelocity = (Math.random() * (20-6)) + 6;
         this.activeWedge = null;
         this.stage = null;
         this.layer = null;
@@ -107,10 +107,23 @@ var wheel = {
 
                 wedge.add(wedgeBackground);
 
+                var truncatedText = formatText(text);
+                var textSize;
+                switch(true) {
+                    case (truncatedText.length < 10):
+                        textSize = 50;
+                        break;
+                    case (truncatedText.length >= 10 && truncatedText.length < 20):
+                        textSize = 35;
+                        break;
+                    case (truncatedText.length >= 20):
+                        textSize = 20;
+                        break;
+                }
                 var text = new Kinetic.Text({
-                    text: formatText(text),
+                    text: truncatedText,
                     fontFamily: 'Calibri',
-                    fontSize: 50,
+                    fontSize: textSize,
                     fill: 'white',
                     align: 'center',
                     stroke: 'yellow',
@@ -142,24 +155,26 @@ var wheel = {
                 self.wedges[n].id = wedge.children[0]._id;
 
                 function formatText(text) {
+                    var textLimit = 15;
                     var truncatedText = text;
-                    if (text.length > 5) {
+                    if (text.length > textLimit) {
+                        // get first letter of each word
                         var matches = text.match(/\b(\w)/g);
                         if (matches.length > 0) {
-                            if (matches.length <= 4) {
-                                trucatedText = matches.join('');
+                            if (matches.length <= textLimit - 1) {
+                                truncatedText = matches.join('');
                             } else {
-                                trucatedText = matches.slice(0, 3).join('');
+                                truncatedText = matches.slice(0, textLimit - 2).join('');
                             }
                         } else {
-                            trucatedText = text.slice(0, 3);
+                            truncatedText = text.slice(0, textLimit - 2);
                         }
                     }
 
                     var newString = "";
-                    for (var index = 0; index < trucatedText.length; index++)
+                    for (var index = 0; index < truncatedText.length; index++)
                     {
-                        newString += trucatedText[index] + "\n";
+                        newString += truncatedText[index] + "\n";
                     }
                     return newString;
                 }
