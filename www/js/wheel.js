@@ -1,16 +1,21 @@
 // JavaScript source code
 var wheel = {
     angularVelocity: 6,
-    angularVelocities: [],
-    controlled: false,
     angularFriction: 0.22,
-    target: null, 
     activeWedge: null, 
     stage: null, 
     layer: null, 
     wheel: null, 
     pointer: null,
     wedges: [],
+    reset: function () {
+        this.angularVelocity = 6;
+        this.activeWedge = null;
+        this.stage = null;
+        this.layer = null;
+        this.wheel = null;
+        this.pointer = null;
+    },
     addWedge: function (name, isGoodRestaurant) {
         this.wedges.push({ text: name, isGoodRestaurant: isGoodRestaurant });
     },
@@ -137,10 +142,24 @@ var wheel = {
                 self.wedges[n].id = wedge.children[0]._id;
 
                 function formatText(text) {
+                    var truncatedText = text;
+                    if (text.length > 5) {
+                        var matches = text.match(/\b(\w)/g);
+                        if (matches.length > 0) {
+                            if (matches.length <= 4) {
+                                trucatedText = matches.join('');
+                            } else {
+                                trucatedText = matches.slice(0, 3).join('');
+                            }
+                        } else {
+                            trucatedText = text.slice(0, 3);
+                        }
+                    }
+
                     var newString = "";
-                    for(var index = 0; index < text.length; index++)
+                    for (var index = 0; index < trucatedText.length; index++)
                     {
-                        newString += text[index] + "\n";
+                        newString += trucatedText[index] + "\n";
                     }
                     return newString;
                 }
@@ -199,6 +218,7 @@ var wheel = {
             }
 
             if (self.angularVelocity <= .015 && !hasCalledBack) {
+                anim.stop();
                 callback(self.wedges.filter(function (value) {
                     return value.id == self.activeWedge._id;
                 }));

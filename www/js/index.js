@@ -36,7 +36,12 @@ var app = {
         setTimeout(function () {
             //navigator.splashscreen.hide();
             //for (var i = 0; i < 6; i++) {
-            //    addRestaurant("asdf", i == 5 ? false: true);
+            addRestaurant("Kentucky Fried Chicken", true);
+            addRestaurant("Chicken Express", true);
+            addRestaurant("Mc Donalds", true);
+            addRestaurant("Jack in the Box", true);
+            addRestaurant("Smash Burger", true);
+            addRestaurant("Chinese Super Buffet", false);
             //}
 
             $('#addWedgeModal').on('shown.bs.modal', function () {
@@ -69,21 +74,28 @@ var app = {
                             var width = 667;
                             var height = 375;
                             wheel.spin((window.screen.width < width) ? window.screen.width : width, (window.screen.height < height) ? window.screen.height : height, onStoppedSpinning);
+                            $("#spin")[0].play();
                         }, 1000);
                     }, 1000);
                 }, 1000);
             });
 
             $('#btnBackToHome').click(function () {
+                Reset();
                 showScreen("wheel", "home");
             });
-
 
             $('.modal-vcenter').on('show.bs.modal', function (e) {
                 centerModals($(this));
             });
             $(window).on('resize', centerModals);
         }, 2000);
+
+        function Reset() {
+            $("#txtWinner").text("");
+            $("#container").html("");
+            wheel.reset();
+        }
 
         function onStoppedSpinning(wedge) {
             var text;
