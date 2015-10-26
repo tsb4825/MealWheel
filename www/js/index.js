@@ -36,6 +36,7 @@ var app = {
         setTimeout(function () {
             //navigator.splashscreen.hide();
             //for (var i = 0; i < 6; i++) {
+            googleApiService.autoComplete();
             addRestaurant("Kentucky Fried Chicken", true);
             addRestaurant("Chicken Express", true);
             addRestaurant("Mc Donalds", true);
