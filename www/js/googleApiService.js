@@ -11,15 +11,15 @@ var googleApiService = {
                     center: geolocation,
                     radius: position.coords.accuracy
                 });
+
+                var input = document.getElementById('txtRestaurant');
+                var options = {
+                    bounds: circle.getBounds(),
+                    types: ['establishment']
+                };
+
+                autocomplete = new google.maps.places.Autocomplete(input, options);
             });
-
-            var input = document.getElementById('txtRestaurant');
-            var options = {
-                bounds: circle.getBounds(),
-                types: ['restaurant']
-            };
-
-            autocomplete = new google.maps.places.Autocomplete(input, options);
         }
     }
 };

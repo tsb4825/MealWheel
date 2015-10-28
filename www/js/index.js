@@ -37,12 +37,12 @@ var app = {
             //navigator.splashscreen.hide();
             //for (var i = 0; i < 6; i++) {
             googleApiService.autoComplete();
-            addRestaurant("Kentucky Fried Chicken", true);
-            addRestaurant("Chicken Express", true);
-            addRestaurant("Mc Donalds", true);
-            addRestaurant("Jack in the Box", true);
-            addRestaurant("Smash Burger", true);
-            addRestaurant("Chinese Super Buffet", false);
+            //addRestaurant("Kentucky Fried Chicken", true);
+            //addRestaurant("Chicken Express", true);
+            //addRestaurant("Mc Donalds", true);
+            //addRestaurant("Jack in the Box", true);
+            //addRestaurant("Smash Burger", true);
+            //addRestaurant("Chinese Super Buffet", false);
             //}
 
             $('#addWedgeModal').on('shown.bs.modal', function () {
