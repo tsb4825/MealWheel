@@ -40,7 +40,7 @@
         <div class="content">
             <h3>Restaurants</h3>
             <button type="button" id="btnAddModal" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addWedgeModal">&#43;</button>
-            <ol id="lstRestaurants" style="padding-top: 10px;padding-left:0"></ol>
+            <ol id="lstRestaurants" class="restaurantList"></ol>
             <button type="button" id="btnSpin" class="btn btn-sm btn-primary">Spin the Wheel!</button>
         </div>
         <div class="modal fade modal-vcenter" id="addWedgeModal" role="dialog" aria-labelledby="myModalLabel">
@@ -71,9 +71,24 @@
     </div>
 <div id="wheelScreen" style="display: none">
     <h1>Meal Wheel of Destiny</h1>
+    <!--wheel container-->
     <div id="container"></div>
-    <p id="txtWinner" class="winning"></p>
-    <button type="button" id="btnBackToHome" class="btn btn-primary btn-sm">Start Again</button>
+    
+    <div class="modal fade modal-vcenter" id="destinationModal" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="destinationModalTitle" class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="txtWinner" class="winning"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnBackToHome" class="btn btn-default" data-dismiss="modal">Start Again</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </div>
     <audio id="win" src="res/audio/ATone.wav" type="audio/wav"></audio>
     <audio id="lose" src="res/audio/WhatYouEatin.wav" type="audio/wav"></audio>

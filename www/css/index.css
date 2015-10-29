@@ -138,12 +138,10 @@ h3 {
 
 .goodRestaurant {
     color: #0000ff;
-    margin-bottom: 5px;
 }
 
 .badRestaurant {
     color: red;
-    margin-bottom: 5px;
 }
 
 #container {
@@ -155,9 +153,30 @@ h3 {
 	margin-top: 10px;
 }
 
-#btnBackToHome{
-	position: absolute;
-    right: 10px;
-    bottom: 45px;
-	display: none;
+.restaurantList {
+    padding-left:0
+}
+
+/* iphone 5 */
+@media only screen 
+and (max-device-width : 568px)  {
+    .badRestaurant{margin-bottom: 2px;}
+    .goodRestaurant{ margin-bottom: 2px;}
+    .restaurantList { padding-top: 3px;}
+    h1 {margin-bottom: 5px}
+}
+
+/* iphone 6*/
+@media only screen 
+    and (min-device-width : 569px) 
+    and (max-device-width : 667px) 
+    and (width : 375px) 
+    and (height : 559px) 
+    and (color : 8)
+    and (device-aspect-ratio : 375/667)
+    and (aspect-ratio : 375/559)
+    and (device-pixel-ratio : 2)
+    and (-webkit-min-device-pixel-ratio : 2) {
+     .badRestaurant {margin-bottom: 5px;}
+     .restaurantList { padding-top: 10px;}
 }

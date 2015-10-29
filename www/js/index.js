@@ -35,14 +35,14 @@ var app = {
     onDeviceReady: function () {
         setTimeout(function () {
             //navigator.splashscreen.hide();
-            //for (var i = 0; i < 6; i++) {
             googleApiService.autoComplete();
-            //addRestaurant("Kentucky Fried Chicken", true);
-            //addRestaurant("Chicken Express", true);
-            //addRestaurant("Mc Donalds", true);
-            //addRestaurant("Jack in the Box", true);
-            //addRestaurant("Smash Burger", true);
-            //addRestaurant("Chinese Super Buffet", false);
+            //for (var i = 0; i < 6; i++) {
+            addRestaurant("Kentucky Fried Chicken", true);
+            addRestaurant("Chicken Express", true);
+            addRestaurant("Mc Donalds", true);
+            addRestaurant("Jack in the Box", true);
+            addRestaurant("Smash Burger", true);
+            addRestaurant("Chinese Super Buffet", false);
             //}
 
             $('#addWedgeModal').on('shown.bs.modal', function () {
@@ -99,16 +99,20 @@ var app = {
         }
 
         function onStoppedSpinning(wedge) {
-            var text;
+            var modalText, modalTitle;
             if (wedge[0].isGoodRestaurant) {
-                text = "You're going to ";
+                modalText = "You're going to ";
+                modalTitle = "Yay!";
                 $("#win")[0].play();
             }else{
-                text = "Oh no!  You're going to ";
+                modalText = "Oh no!  You're going to ";
+                modalTitle = "Oh no!";
                 $("#lose")[0].play();
             }
-            $("#txtWinner").text(text + wedge[0].text);
-            $("#btnBackToHome").show();
+            $
+            $("#txtWinner").text(modalText + wedge[0].text);
+            $("#destinationModalTitle").text(modalTitle);
+            $('#destinationModal').modal('show');
         }
 
         function showScreen(previousScreenName, newScreenName) {
