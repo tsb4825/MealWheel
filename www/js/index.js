@@ -74,7 +74,7 @@ var app = {
                             showScreen("home", "wheel");
                             var width = 667;
                             var height = 375;
-                            wheel.spin((window.screen.width < width) ? window.screen.width : width, (window.screen.height < height) ? window.screen.height : height, onStoppedSpinning);
+                            wheel.spin(($(window).width() < width) ? $(window).width() : width, ($(window).height() < height) ? $(window).height() : height, onStoppedSpinning);
                             $("#spin")[0].play();
                         }, 1000);
                     }, 1000);
