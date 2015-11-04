@@ -34,7 +34,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         setTimeout(function () {
-            //navigator.splashscreen.hide();
+            navigator.splashscreen.hide();
             googleApiService.autoComplete();
             //for (var i = 0; i < 6; i++) {
             addRestaurant("Kentucky Fried Chicken", true);
