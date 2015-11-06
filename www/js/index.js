@@ -33,6 +33,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
+        var self = this;
         setTimeout(function () {
             navigator.splashscreen.hide();
             googleApiService.autoComplete();
@@ -75,7 +76,7 @@ var app = {
                             var width = 667;
                             var height = 375;
                             wheel.spin(($(window).width() < width) ? $(window).width() : width, ($(window).height() < height) ? $(window).height() : height, onStoppedSpinning);
-                            $("#spin")[0].play();
+                            app.playAudio('res/audio/Applause1.wav');
                         }, 1000);
                     }, 1000);
                 }, 1000);
@@ -103,11 +104,11 @@ var app = {
             if (wedge[0].isGoodRestaurant) {
                 modalText = "You're going to ";
                 modalTitle = "Yay!";
-                $("#win")[0].play();
+                app.playAudio('res/audio/ATone.wav');
             }else{
                 modalText = "Oh no!  You're going to ";
                 modalTitle = "Oh no!";
-                $("#lose")[0].play();
+                app.playAudio('res/audio/WhatYouEatin.wav');
             }
             $
             $("#txtWinner").text(modalText + wedge[0].text);
@@ -132,10 +133,10 @@ var app = {
         function addRestaurant(text, isGoodRestaurant) {
             var textClass = "";
             if (isGoodRestaurant) {
-                this.goodRestaurants++;
+                self.goodRestaurants++;
                 textClass = "goodRestaurant";
             } else {
-                this.badRestaurants++;
+                self.badRestaurants++;
                 textClass = "badRestaurant";
             }
 
@@ -170,14 +171,18 @@ var app = {
     },
     deleteRestaurant: function (text, isGoodRestaurant) {
         if (isGoodRestaurant) {
-            this.goodRestaurants--;
+            self.goodRestaurants--;
         } else {
-            this.badRestaurants--;
+            self.badRestaurants--;
         }
         wheel.removeWedge(text);
         $("li:contains('" + text + "'):first").remove();
         $("#btnAddRestaurant").show();
         $("#btnSpin").hide();
+    },
+    playAudio: function playAudio(src) {
+        var media = new Media(src,null,null);
+        media.play();
     },
     goodRestaurants: 0,
     badRestaurants: 0
