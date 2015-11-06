@@ -76,7 +76,7 @@ var app = {
                             var width = 667;
                             var height = 375;
                             wheel.spin(($(window).width() < width) ? $(window).width() : width, ($(window).height() < height) ? $(window).height() : height, onStoppedSpinning);
-                            app.playAudio('res/audio/Applause1.wav');
+                            app.playAudio('Applause1.wav');
                         }, 1000);
                     }, 1000);
                 }, 1000);
@@ -104,11 +104,11 @@ var app = {
             if (wedge[0].isGoodRestaurant) {
                 modalText = "You're going to ";
                 modalTitle = "Yay!";
-                app.playAudio('res/audio/ATone.wav');
+                app.playAudio('ATone.wav');
             }else{
                 modalText = "Oh no!  You're going to ";
                 modalTitle = "Oh no!";
-                app.playAudio('res/audio/WhatYouEatin.wav');
+                app.playAudio('WhatYouEatin.wav');
             }
             $
             $("#txtWinner").text(modalText + wedge[0].text);
@@ -180,8 +180,8 @@ var app = {
         $("#btnAddRestaurant").show();
         $("#btnSpin").hide();
     },
-    playAudio: function playAudio(src) {
-        var media = new Media(src,null,null);
+    playAudio: function playAudio(filename) {
+        var media = new Media('res/audio/' + filename, null, log);
         media.play();
     },
     goodRestaurants: 0,
