@@ -181,7 +181,7 @@ var app = {
         $("#btnSpin").hide();
     },
     playAudio: function playAudio(filename) {
-        var media = new Media('res/audio/' + filename, null, console.log);
+        var media = new Media(filename, null, console.log);
         media.play();
     },
     goodRestaurants: 0,
