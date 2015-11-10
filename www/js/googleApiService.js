@@ -1,6 +1,6 @@
 // JavaScript source code
 var googleApiService = {
-    autoComplete: function () {
+    autoComplete: function (keyword, isGoodRestaurant) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var geolocation = {
@@ -11,15 +11,21 @@ var googleApiService = {
                     center: geolocation,
                     radius: position.coords.accuracy
                 });
-
-                var input = document.getElementById('txtRestaurant');
-                var options = {
+                
+                var request = {
                     bounds: circle.getBounds(),
-                    types: ['establishment']
+                    types: ['food'],
+                    keyword: keyword
                 };
 
-                autocomplete = new google.maps.places.Autocomplete(input, options);
+                var service = new google.maps.places.PlacesService($("#googleAttribution").get(0));
+                var result = service.nearbySearch(request, callback);
             });
+        }
+
+        function callback(results, status) {
+            var firstFiveResults = results.slice(0,5).map(function(item){return item.name});
+
         }
     }
 };

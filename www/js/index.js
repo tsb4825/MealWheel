@@ -17,6 +17,8 @@
  * under the License.
  */
 var app = {
+    goodRestaurants: 0,
+    badRestaurants: 0,
     // Application Constructor
     initialize: function () {
         this.bindEvents();
@@ -33,17 +35,15 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-        var self = this;
         setTimeout(function () {
-            navigator.splashscreen.hide();
-            googleApiService.autoComplete();
+            //navigator.splashscreen.hide();
             //for (var i = 0; i < 6; i++) {
-            addRestaurant("Kentucky Fried Chicken", true);
-            addRestaurant("Chicken Express", true);
-            addRestaurant("Mc Donalds", true);
-            addRestaurant("Jack in the Box", true);
-            addRestaurant("Smash Burger", true);
-            addRestaurant("Chinese Super Buffet", false);
+            //addRestaurant("Kentucky Fried Chicken", true);
+            //addRestaurant("Chicken Express", true);
+            //addRestaurant("Mc Donalds", true);
+            //addRestaurant("Jack in the Box", true);
+            //addRestaurant("Smash Burger", true);
+            //addRestaurant("Chinese Super Buffet", false);
             //}
 
             $('#addWedgeModal').on('shown.bs.modal', function () {
@@ -56,6 +56,10 @@ var app = {
                 isGoodRestaurant
                     ? $("#modalTitle").html("Add a <span class=\"goodRestaurant\">good</span> restaurant")
                     : $("#modalTitle").html("Now, add a <span class=\"badRestaurant\">bad</span> restaurant");
+            });
+
+            $("#txtRestaurant").keydown(function () {
+                googleApiService.autoComplete($("#txtRestaurant").val());
             });
 
             $('#btnAddRestaurant').click(function () {
@@ -133,10 +137,10 @@ var app = {
         function addRestaurant(text, isGoodRestaurant) {
             var textClass = "";
             if (isGoodRestaurant) {
-                self.goodRestaurants++;
+                this.goodRestaurants++;
                 textClass = "goodRestaurant";
             } else {
-                self.badRestaurants++;
+                this.badRestaurants++;
                 textClass = "badRestaurant";
             }
 
@@ -171,19 +175,17 @@ var app = {
     },
     deleteRestaurant: function (text, isGoodRestaurant) {
         if (isGoodRestaurant) {
-            self.goodRestaurants--;
+            this.goodRestaurants--;
         } else {
-            self.badRestaurants--;
+            this.badRestaurants--;
         }
         wheel.removeWedge(text);
         $("li:contains('" + text + "'):first").remove();
         $("#btnAddRestaurant").show();
         $("#btnSpin").hide();
     },
-    playAudio: function playAudio(filename) {
+    playAudio: function (filename) {
         var media = new Media(filename, null, console.log);
         media.play();
-    },
-    goodRestaurants: 0,
-    badRestaurants: 0
+    }
 };

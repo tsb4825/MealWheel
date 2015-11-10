@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -120,6 +120,13 @@ h3 {
     background-color: #FFF !important;
 }
 
+.modal{
+    z-index: 20;   
+}
+.modal-backdrop{
+    z-index: 10;        
+}​
+
 #txtContent {
     text-align: center;
     color: #0000ff !important;
@@ -157,6 +164,24 @@ h3 {
     padding-left:0
 }
 
+#autoCompleteContainer {
+    border-color: gray;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.autoCompleteContent {
+    margin: 0 0 2px;
+    border-bottom: gray;
+    border-style: solid;
+    border-width: 1px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding-left: 5px;
+}
+
+
 /* iphone 5 */
 @media only screen 
 and (max-width: 568px)  {
@@ -172,4 +197,12 @@ and (max-width: 568px)  {
     and (max-width : 667px) {
      .badRestaurant {margin-bottom: 5px;}
      .restaurantList { padding-top: 10px;}
+}
+
+.pac-container {
+    background-color: #FFF;
+    z-index: 1050;
+    position: fixed;
+    display: inline-block;
+    float: left;
 }
