@@ -76,7 +76,7 @@
     <gap:splash gap:platform="ios" height="2208" src="res/screen/ios/screen-ipad-landscape.png" width="1242" />
     <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="*" />
-    <plugin name="cordova-plugin-whitelist" version="1" />
+    <plugin name="cordova-plugin-whitelist" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -91,4 +91,5 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <engine name="browser" spec="~4.0.0" />
+    <engine name="ios" spec="~3.9.2" />
 </widget>
