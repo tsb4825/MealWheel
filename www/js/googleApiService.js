@@ -1,6 +1,6 @@
 // JavaScript source code
 var googleApiService = {
-    autoComplete: function (keyword, isGoodRestaurant) {
+    nearbyFood: function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var geolocation = {
@@ -8,14 +8,14 @@ var googleApiService = {
                     lng: position.coords.longitude
                 };
                 var circle = new google.maps.Circle({
-                    center: geolocation,
-                    radius: position.coords.accuracy
+                    location: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                    radius: 20
                 });
                 
                 var request = {
-                    bounds: circle.getBounds(),
-                    types: ['food'],
-                    keyword: keyword
+                    location: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                    radius: 1000,
+                    types: ['food']
                 };
 
                 var service = new google.maps.places.PlacesService($("#googleAttribution").get(0));
@@ -24,8 +24,11 @@ var googleApiService = {
         }
 
         function callback(results, status) {
-            var firstFiveResults = results.slice(0,5).map(function(item){return item.name});
-
+            $("#nearbyFood").html();
+            var firstFiveResults = results.map(function(item){return item.name});
+            firstFiveResults.forEach(function (element) {
+                $("#nearbyFood").append("<h6 class=\"nearbyFoodText\" onclick=\"$('#txtRestaurant').val('" + element.replace("'","\\'").replace("\"", "\"\"") + "');\">" + element + "</h6>");
+            });
         }
     }
 };

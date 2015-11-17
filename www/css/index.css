@@ -181,6 +181,20 @@ h3 {
     padding-left: 5px;
 }
 
+.nearbyFood {
+    margin-bottom: 2px;
+    overflow-y: auto;
+    height: 120px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    margin: 5px;
+}
+
+.nearbyFoodText {
+    margin-bottom: 4px;
+    margin-top: 4px
+}
 
 /* iphone 5 */
 @media only screen 
@@ -189,6 +203,7 @@ and (max-width: 568px)  {
     .goodRestaurant{ margin-bottom: 2px;}
     .restaurantList { padding-top: 3px;}
     h1 { margin-bottom: 5px;margin-top:5px !important}
+    .nearbyFood {height:70px}
 }
 
 /* iphone 6*/
@@ -197,6 +212,7 @@ and (max-width: 568px)  {
     and (max-width : 667px) {
      .badRestaurant {margin-bottom: 5px;}
      .restaurantList { padding-top: 10px;}
+     .nearbyFood { height: 120px; }
 }
 
 .pac-container {

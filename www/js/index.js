@@ -58,9 +58,7 @@ var app = {
                     : $("#modalTitle").html("Now, add a <span class=\"badRestaurant\">bad</span> restaurant");
             });
 
-            $("#txtRestaurant").keydown(function () {
-                googleApiService.autoComplete($("#txtRestaurant").val());
-            });
+            googleApiService.nearbyFood();
 
             $('#btnAddRestaurant').click(function () {
                 var isGoodRestaurant = shouldAddGoodRestaurant();

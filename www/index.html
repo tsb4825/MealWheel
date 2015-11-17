@@ -53,6 +53,8 @@
                     </div>
                     <div class="modal-body">
                         <input class="form-control" id="txtRestaurant" type="text" />
+                        <h5 style="margin-bottom: 2px;">Nearby Food</h5>
+                        <div id="nearbyFood" class="nearbyFood"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="btnAddRestaurant" class="btn btn-default" data-dismiss="modal">Add</button>
@@ -70,27 +72,27 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
     </div>
-<div id="wheelScreen" style="display: none">
-    <h1>Meal Wheel of Destiny</h1>
-    <!--wheel container-->
-    <div id="container"></div>
-    
-    <div class="modal fade modal-vcenter" id="destinationModal" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 id="destinationModalTitle" class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-                    <p id="txtWinner" class="winning"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="btnBackToHome" class="btn btn-default" data-dismiss="modal">Start Again</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-</div>
+    <div id="wheelScreen" style="display: none">
+        <h1>Meal Wheel of Destiny</h1>
+        <!--wheel container-->
+        <div id="container"></div>
+
+        <div class="modal fade modal-vcenter" id="destinationModal" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 id="destinationModalTitle" class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="txtWinner" class="winning"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnBackToHome" class="btn btn-default" data-dismiss="modal">Start Again</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
     <audio id="win" src="res/audio/ATone.wav" type="audio/wav"></audio>
     <audio id="lose" src="res/audio/WhatYouEatin.wav" type="audio/wav"></audio>
     <audio id="spin" src="res/audio/Applause1.wav" type="audio/wav"></audio>
@@ -98,8 +100,9 @@
     <script type="text/javascript" src="js/kinetic-v4.4.1.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAobMSkNcMKpd7zXUTxD33CQ8LksYjrI54&signed_in=true&libraries=places&callback=googleApiService.autoComplete"
-            async defer></script>    <script type="text/javascript" src="js/wheel.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAobMSkNcMKpd7zXUTxD33CQ8LksYjrI54&signed_in=true&libraries=places"
+            async defer></script>
+    <script type="text/javascript" src="js/wheel.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/googleApiService.js"></script>
     <script type="text/javascript">
