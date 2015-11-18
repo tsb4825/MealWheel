@@ -52,13 +52,12 @@ var app = {
 
             $('#btnAddModal').click(function() {
                 $("#txtRestaurant").val("");
+                googleApiService.setNearbyFood();
                 var isGoodRestaurant = shouldAddGoodRestaurant();
                 isGoodRestaurant
                     ? $("#modalTitle").html("Add a <span class=\"goodRestaurant\">good</span> restaurant")
                     : $("#modalTitle").html("Now, add a <span class=\"badRestaurant\">bad</span> restaurant");
             });
-
-            googleApiService.nearbyFood();
 
             $('#btnAddRestaurant').click(function () {
                 var isGoodRestaurant = shouldAddGoodRestaurant();
