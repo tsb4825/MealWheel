@@ -204,6 +204,7 @@ and (max-width: 568px)  {
     .restaurantList { padding-top: 3px;}
     h1 { margin-bottom: 5px;margin-top:5px !important}
     .nearbyFood {height:70px}
+    h6 {margin-top:1px !important;margin-bottom:1px !important}
 }
 
 /* iphone 6*/
