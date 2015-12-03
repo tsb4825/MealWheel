@@ -79,7 +79,10 @@
         <h1>Meal Wheel of Destiny</h1>
         <!--wheel container-->
         <div id="container"></div>
-
+        <div>
+            <p class="winning"></p>
+            <button type="button" class="btn btn-default btnBackToHome" data-dismiss="modal">Start Again</button>
+        </div>
         <div class="modal fade modal-vcenter" id="destinationModal" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -90,26 +93,26 @@
                         <p id="txtWinner" class="winning"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="btnBackToHome" class="btn btn-default" data-dismiss="modal">Start Again</button>
+                        <button type="button" id="btnBackToHome" class="btn btn-default btnBackToHome" data-dismiss="modal">Start Again</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-    </div>
-    <audio id="win" src="res/audio/ATone.wav" type="audio/wav"></audio>
-    <audio id="lose" src="res/audio/WhatYouEatin.wav" type="audio/wav"></audio>
-    <audio id="spin" src="res/audio/Applause1.wav" type="audio/wav"></audio>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/kinetic-v4.4.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAobMSkNcMKpd7zXUTxD33CQ8LksYjrI54&signed_in=true&libraries=places"
-            async defer></script>
-    <script type="text/javascript" src="js/wheel.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/googleApiService.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
+        </div>
+        <audio id="win" src="res/audio/ATone.wav" type="audio/wav"></audio>
+        <audio id="lose" src="res/audio/WhatYouEatin.wav" type="audio/wav"></audio>
+        <audio id="spin" src="res/audio/Applause1.wav" type="audio/wav"></audio>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/kinetic-v4.4.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAobMSkNcMKpd7zXUTxD33CQ8LksYjrI54&signed_in=true&libraries=places"
+                async defer></script>
+        <script type="text/javascript" src="js/wheel.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/googleApiService.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
 </body>
 </html>

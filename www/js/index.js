@@ -83,7 +83,7 @@ var app = {
                 }, 1000);
             });
 
-            $('#btnBackToHome').click(function () {
+            $('.btnBackToHome').click(function () {
                 Reset();
                 showScreen("wheel", "home");
             });
@@ -95,7 +95,7 @@ var app = {
         }, 2000);
 
         function Reset() {
-            $("#txtWinner").text("");
+            $(".winning").text("");
             $("#container").html("");
             wheel.reset();
         }
@@ -112,7 +112,7 @@ var app = {
                 app.playAudio('WhatYouEatin.wav');
             }
             $
-            $("#txtWinner").text(modalText + wedge[0].text);
+            $(".winning").text(modalText + wedge[0].text);
             $("#destinationModalTitle").text(modalTitle);
             $('#destinationModal').modal('show');
         }
@@ -182,7 +182,7 @@ var app = {
         $("#btnSpin").hide();
     },
     playAudio: function (filename) {
-        var media = new Media(filename, null, console.log);
+        var media = new Media("res/audio/" + filename, null, console.log);
         media.play();
     }
 };
