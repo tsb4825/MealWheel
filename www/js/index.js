@@ -174,7 +174,7 @@ var app = {
             var path = window.location.pathname;
             var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
             var devicePlatform = device.platform;
-            var media = new Media(phoneGapPath + "res/audio/" + filename, null, console.log);
+            var media = new Media("file://" + phoneGapPath + "res/audio/" + filename, null, console.log);
             media.play();
         }
     },
