@@ -87,6 +87,7 @@ var app = {
             $('.btnBackToHome').click(function () {
                 Reset();
                 showScreen("wheel", "home");
+                adMobService.showAdinterstitial();
             });
 
             $('.modal-vcenter').on('show.bs.modal', function (e) {
@@ -170,6 +171,7 @@ var app = {
         }
 
         function playAudio(filename) {
+            var src = location.origin;
             var media = new Media("res/audio/" + filename, null, console.log);
             media.play();
         }
