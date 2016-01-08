@@ -87,7 +87,7 @@ var app = {
             $('.btnBackToHome').click(function () {
                 Reset();
                 showScreen("wheel", "home");
-                adMobService.showAdinterstitial();
+                adMobService.showAdInterstitial();
             });
 
             $('.modal-vcenter').on('show.bs.modal', function (e) {
@@ -171,8 +171,10 @@ var app = {
         }
 
         function playAudio(filename) {
-            var src = location.origin;
-            var media = new Media("res/audio/" + filename, null, console.log);
+            var path = window.location.pathname;
+            var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
+            var devicePlatform = device.platform;
+            var media = new Media('file://' + phoneGapPath + filename, null, console.log);
             media.play();
         }
     },
