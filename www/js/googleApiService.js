@@ -4,7 +4,7 @@ var googleApiService = {
     cacheExpireTime: "",
     setNearbyFood: function () {
         var self = this;
-        if (this.cacheExpireTime < new Date()) {
+        if (this.cacheExpireTime < new Date() && self.googleResults) {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var geolocation = {
@@ -25,12 +25,12 @@ var googleApiService = {
                     self.cacheExpireTime.setHours(new Date().getHours() + 1);
                 });
             }
-            else {
-                $("#nearbyFood").html();
-                reMappedResults.forEach(function (element) {
-                    $("#nearbyFood").append("<h6 class=\"nearbyFoodText\" onclick=\"$('#txtRestaurant').val('" + element.replace("'", "\\'").replace("\"", "\"\"") + "');\">" + element + "</h6>");
-                });
-            }
+        }
+        else {
+            $("#nearbyFood").html();
+            self.googleResults.forEach(function (element) {
+                $("#nearbyFood").append("<h6 class=\"nearbyFoodText\" onclick=\"$('#txtRestaurant').val('" + element.replace("'", "\\'").replace("\"", "\"\"") + "');\">" + element + "</h6>");
+            });
         }
 
         function callback(results, status) {

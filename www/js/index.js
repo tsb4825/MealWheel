@@ -45,6 +45,7 @@ var app = {
             //addRestaurant("Smash Burger", true);
             //addRestaurant("Chinese Super Buffet", false);
             //}
+            adMobService.setupAds();
 
             $('#addWedgeModal').on('shown.bs.modal', function () {
                 $('#txtRestaurant').focus();
@@ -77,7 +78,7 @@ var app = {
                             var width = 667;
                             var height = 375;
                             wheel.spin(($(window).width() < width) ? $(window).width() : width, ($(window).height() < height) ? $(window).height() : height, onStoppedSpinning);
-                            app.playAudio('Applause1.wav');
+                            playAudio('Applause1.wav');
                         }, 1000);
                     }, 1000);
                 }, 1000);
@@ -92,6 +93,8 @@ var app = {
                 centerModals($(this));
             });
             $(window).on('resize', centerModals);
+
+            adMobService.showAdInterstitial();
         }, 2000);
 
         function Reset() {
@@ -105,11 +108,11 @@ var app = {
             if (wedge[0].isGoodRestaurant) {
                 modalText = "You're going to ";
                 modalTitle = "Yay!";
-                app.playAudio('ATone.wav');
+                playAudio('ATone.wav');
             }else{
                 modalText = "Oh no!  You're going to ";
                 modalTitle = "Oh no!";
-                app.playAudio('WhatYouEatin.wav');
+                playAudio('WhatYouEatin.wav');
             }
             $
             $(".winning").text(modalText + wedge[0].text);
@@ -165,6 +168,11 @@ var app = {
                 $(this).find('.modal-content').css("margin-top", top);
             });
         }
+
+        function playAudio(filename) {
+            var media = new Media("res/audio/" + filename, null, console.log);
+            media.play();
+        }
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
@@ -180,9 +188,5 @@ var app = {
         $("li:contains('" + text + "'):first").remove();
         $("#btnAddRestaurant").show();
         $("#btnSpin").hide();
-    },
-    playAudio: function (filename) {
-        var media = new Media("res/audio/" + filename, null, console.log);
-        media.play();
     }
 };
