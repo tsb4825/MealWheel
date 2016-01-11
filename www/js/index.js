@@ -36,7 +36,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         setTimeout(function () {
-            navigator.splashscreen.hide();
+            //navigator.splashscreen.hide();
             //for (var i = 0; i < 6; i++) {
             //addRestaurant("Kentucky Fried Chicken", true);
             //addRestaurant("Chicken Express", true);
@@ -96,6 +96,7 @@ var app = {
             $(window).on('resize', centerModals);
 
             adMobService.showAdInterstitial();
+            playAudio('Audacity.NoName.mp3', true);
         }, 2000);
 
         function Reset() {
@@ -170,12 +171,12 @@ var app = {
             });
         }
 
-        function playAudio(filename) {
+        function playAudio(filename, shouldLoop) {
             var path = window.location.pathname;
             var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
             var devicePlatform = device.platform;
             var media = new Media("audio/" + filename, null, console.log);
-            media.play();
+            media.play({ numberOfLoops: (shouldLoop) ? 20 : 0 });
         }
     },
     // Update DOM on a Received Event
