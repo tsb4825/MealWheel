@@ -96,7 +96,7 @@ var app = {
             $(window).on('resize', centerModals);
 
             adMobService.showAdInterstitial();
-            playAudio('Audacity.NoName.mp3', true);
+            playAudio('Audacity-NoName.mp3', true);
         }, 2000);
 
         function Reset() {
