@@ -36,7 +36,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         setTimeout(function () {
-            //navigator.splashscreen.hide();
+            navigator.splashscreen.hide();
             //for (var i = 0; i < 6; i++) {
             //addRestaurant("Kentucky Fried Chicken", true);
             //addRestaurant("Chicken Express", true);
@@ -179,7 +179,7 @@ var app = {
             var devicePlatform = device.platform;
             var media = new Media("audio/" + filename, null, console.log);
             if (isBackgroundMusic) {
-                media.setVolume('0.8');
+                media.setVolume('0.5');
             }
             media.play({ numberOfLoops: (isBackgroundMusic) ? 20 : 0 });
         }
