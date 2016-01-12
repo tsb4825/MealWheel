@@ -8,6 +8,7 @@ var wheel = {
     wheel: null, 
     pointer: null,
     wedges: [],
+    colors: [],
     reset: function () {
         this.angularVelocity = (Math.random() * (20-6)) + 6;
         this.activeWedge = null;
@@ -44,6 +45,7 @@ var wheel = {
                 x: self.stage.getWidth() / 2,
                 y: 410
             });
+            self.colors = [[20, 74, 199], [230, 16, 69], [16, 226, 230], [16, 230, 133], [214, 85, 4], [61, 60, 59]];
 
             for (var n = 0; n < self.wedges.length; n++) {
                 addWedgeToWheel(n, self.wedges[n].text);
@@ -180,13 +182,8 @@ var wheel = {
                 }
 
                 function getRandomColor() {
-                    var r = 100 + Math.round(Math.random() * 55);
-                    var g = 100 + Math.round(Math.random() * 55);
-                    var b = 100 + Math.round(Math.random() * 55);
-                    var color = [r, g, b];
-                    color = purifyColor(color);
-                    color = purifyColor(color);
-
+                    var randNumber = 1 + Math.round(Math.random() * self.colors.length - 1);
+                    var color = self.colors.pop(randNumber);
                     return color;
                 }
 
@@ -223,11 +220,6 @@ var wheel = {
                         easing: 'elastic-ease-out',
                         duration: 0.3
                     });
-
-                    if (self.activeWedge) {
-                        self.activeWedge.setFillPriority('radial-gradient');
-                    }
-                    shape.setFillPriority('fill');
                     self.activeWedge = shape;
                 }
             }

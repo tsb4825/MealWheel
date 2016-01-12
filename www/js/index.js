@@ -36,7 +36,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         setTimeout(function () {
-            navigator.splashscreen.hide();
+            //navigator.splashscreen.hide();
             //for (var i = 0; i < 6; i++) {
             //addRestaurant("Kentucky Fried Chicken", true);
             //addRestaurant("Chicken Express", true);
@@ -95,7 +95,7 @@ var app = {
             });
             $(window).on('resize', centerModals);
 
-            adMobService.showAdInterstitial();
+            //adMobService.showAdInterstitial();
             playAudio('Audacity-NoName.mp3', true);
         }, 2000);
 
@@ -137,21 +137,23 @@ var app = {
         }
 
         function addRestaurant(text, isGoodRestaurant) {
-            var textClass = "";
-            if (isGoodRestaurant) {
-                this.app.goodRestaurants++;
-                textClass = "goodRestaurant";
-            } else {
-                this.app.badRestaurants++;
-                textClass = "badRestaurant";
-            }
+            if (text) {
+                var textClass = "";
+                if (isGoodRestaurant) {
+                    this.app.goodRestaurants++;
+                    textClass = "goodRestaurant";
+                } else {
+                    this.app.badRestaurants++;
+                    textClass = "badRestaurant";
+                }
 
-            wheel.addWedge(text, isGoodRestaurant);
-            $("#lstRestaurants").append("<li class=\"" + textClass + "\"><h6 style=\"display:inline;\">" + text + "</h6> <button type=\"button\" class=\"btn btn-danger btn-xs\" onclick=\"app.deleteRestaurant('" + text + "', " + isGoodRestaurant + ");\">&#45;</button></li>");
+                wheel.addWedge(text, isGoodRestaurant);
+                $("#lstRestaurants").append("<li class=\"" + textClass + "\"><h6 style=\"display:inline;\">" + text + "</h6> <button type=\"button\" class=\"btn btn-danger btn-xs\" onclick=\"app.deleteRestaurant('" + text + "', " + isGoodRestaurant + ");\">&#45;</button></li>");
 
-            if (wheel.wedges.length >= 6) {
-                $("#btnAddModal").hide();
-                $("#btnSpin").show();
+                if (wheel.wedges.length >= 6) {
+                    $("#btnAddModal").hide();
+                    $("#btnSpin").show();
+                }
             }
         }
 
@@ -171,12 +173,15 @@ var app = {
             });
         }
 
-        function playAudio(filename, shouldLoop) {
+        function playAudio(filename, isBackgroundMusic) {
             var path = window.location.pathname;
             var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
             var devicePlatform = device.platform;
             var media = new Media("audio/" + filename, null, console.log);
-            media.play({ numberOfLoops: (shouldLoop) ? 20 : 0 });
+            if (isBackgroundMusic) {
+                media.setVolume('0.8');
+            }
+            media.play({ numberOfLoops: (isBackgroundMusic) ? 20 : 0 });
         }
     },
     // Update DOM on a Received Event

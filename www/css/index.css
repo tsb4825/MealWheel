@@ -24,17 +24,6 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
@@ -56,6 +45,7 @@ h1 {
     overflow:visible;
     padding:0px;
     text-align:center;
+	font-family: 'Bauhaus 93'
 }
 
 h3 {
@@ -99,6 +89,13 @@ h3 {
     -webkit-animation:fade 3000ms infinite;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bauhaus 93';
+}
+p, div {
+    font-family: 'Bauhaus 93';
+}
+
 /*modal classes*/
 .container-table {
     display: table;
@@ -132,14 +129,11 @@ h3 {
 .modal{
     z-index: 20;   
 }
-/*.modal-backdrop{
-    z-index: 10;        
-}​*/
 
 #txtContent {
     text-align: center;
     color: white !important;
-    font-size: 32px;
+    font-size: 70px;
 }
 
 /* app */
@@ -206,8 +200,9 @@ h3 {
 }
 
 #btnBackToHomeWheel{
-    margin-top:-40px;
+    margin-top:-11px;
     float:right;
+	margin-right: 5px
 }
 
 /* iphone 5 */
