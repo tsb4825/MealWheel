@@ -199,10 +199,14 @@ p, div {
     margin-top: 4px
 }
 
-#btnBackToHomeWheel{
+.btnBackToHomeWheel{
     margin-top:-11px;
     float:right;
 	margin-right: 5px
+}
+
+.moveUpBackToHome{
+	margin-top: -40px;
 }
 
 /* iphone 5 */

@@ -21,10 +21,17 @@ var wheel = {
         this.wedges.push({ text: name, isGoodRestaurant: isGoodRestaurant });
     },
     removeWedge: function(name) {
-        var index = this.wedges.indexOf(name);
+        var index = findElement(this.wedges, "text", name);
         if (index > -1) {
             this.wedges.splice(index, 1);
         }
+
+        function findElement(arr, propName, propValue) {
+            for (var i=0; i < arr.length; i++)
+                if (arr[i][propName] == propValue)
+                    return i;
+        }
+
     },
     spin: function (width, height, callback) {
         var self = this;

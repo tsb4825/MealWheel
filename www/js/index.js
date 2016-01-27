@@ -36,7 +36,9 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         setTimeout(function () {
-            navigator.splashscreen.hide();
+            if (isDevice()) {
+                navigator.splashscreen.hide();
+            }
             //for (var i = 0; i < 6; i++) {
             //addRestaurant("Kentucky Fried Chicken", true);
             //addRestaurant("Chicken Express", true);
@@ -87,7 +89,9 @@ var app = {
             $('.btnBackToHome').click(function () {
                 Reset();
                 showScreen("wheel", "home");
-                adMobService.showAdInterstitial();
+                if (isDevice()) {
+                    adMobService.showAdInterstitial();
+                }
             });
 
             $('.modal-vcenter').on('show.bs.modal', function (e) {
@@ -95,13 +99,16 @@ var app = {
             });
             $(window).on('resize', centerModals);
 
-            //adMobService.showAdInterstitial();
+            if (isDevice()) {
+                adMobService.showAdInterstitial();
+            }
             playAudio('Audacity-NoName.mp3', true);
         }, 2000);
 
         function Reset() {
             $(".winning").text("");
             $("#container").html("");
+            $("#btnBackToHomeWheel").removeClass("moveUpBackToHome");
             wheel.reset();
         }
 
@@ -120,6 +127,7 @@ var app = {
             $(".winning").text(modalText + wedge[0].text);
             $("#destinationModalTitle").text(modalTitle);
             $('#destinationModal').modal('show');
+            $("#btnBackToHomeWheel").addClass("moveUpBackToHome");
         }
 
         function showScreen(previousScreenName, newScreenName) {
@@ -129,7 +137,7 @@ var app = {
 
         function shouldAddGoodRestaurant() {
             var isGoodRestaurant = true;
-            if (wheel.wedges.length >= 5) {
+            if (wheel.wedges.length >= 5 && this.app.badRestaurants <= 0) {
                 return false;
             }
 
@@ -148,7 +156,7 @@ var app = {
                 }
 
                 wheel.addWedge(text, isGoodRestaurant);
-                $("#lstRestaurants").append("<li class=\"" + textClass + "\"><h6 style=\"display:inline;\">" + text + "</h6> <button type=\"button\" class=\"btn btn-danger btn-xs\" onclick=\"app.deleteRestaurant('" + text + "', " + isGoodRestaurant + ");\">&#45;</button></li>");
+                $("#lstRestaurants").append("<li class=\"" + textClass + "\"><h6 style=\"display:inline;\">" + text + "</h6> <button type=\"button\" class=\"btn btn-danger btn-xs\" onclick=\"app.deleteRestaurant('" + text.replace("'", "*") + "', " + isGoodRestaurant + ");\">&#45;</button></li>");
 
                 if (wheel.wedges.length >= 6) {
                     $("#btnAddModal").hide();
@@ -174,14 +182,20 @@ var app = {
         }
 
         function playAudio(filename, isBackgroundMusic) {
-            var path = window.location.pathname;
-            var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
-            var devicePlatform = device.platform;
-            var media = new Media("audio/" + filename, null, console.log);
-            if (isBackgroundMusic) {
-                media.setVolume('0.5');
+            if (isDevice()) {
+                var path = window.location.pathname;
+                var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
+                var devicePlatform = device.platform;
+                var media = new Media("audio/" + filename, null, console.log);
+                if (isBackgroundMusic) {
+                    media.setVolume('0.5');
+                }
+                media.play({ numberOfLoops: (isBackgroundMusic) ? 20 : 0 });
             }
-            media.play({ numberOfLoops: (isBackgroundMusic) ? 20 : 0 });
+        }
+
+        function isDevice() {
+            return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
         }
     },
     // Update DOM on a Received Event
@@ -189,6 +203,7 @@ var app = {
 
     },
     deleteRestaurant: function (text, isGoodRestaurant) {
+        text = text.replace("*", "'");
         if (isGoodRestaurant) {
             this.goodRestaurants--;
         } else {
@@ -196,7 +211,7 @@ var app = {
         }
         wheel.removeWedge(text);
         $("li:contains('" + text + "'):first").remove();
-        $("#btnAddRestaurant").show();
+        $("#btnAddModal").show();
         $("#btnSpin").hide();
     }
 };
