@@ -190,7 +190,12 @@ var app = {
                 if (isBackgroundMusic) {
                     media.setVolume('0.5');
                 }
-                media.play({ numberOfLoops: (isBackgroundMusic) ? 20 : 0 });
+                if (isBackgroundMusic) {
+                    media.play({ numberOfLoops: 20 });
+                }
+                else {
+                    media.play();
+                }
             }
         }
 
