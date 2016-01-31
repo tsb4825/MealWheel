@@ -36,9 +36,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         setTimeout(function () {
-            if (isDevice()) {
-                navigator.splashscreen.hide();
-            }
+            showScreen("splash", "home");
             //for (var i = 0; i < 6; i++) {
             //addRestaurant("Kentucky Fried Chicken", true);
             //addRestaurant("Chicken Express", true);
@@ -186,7 +184,10 @@ var app = {
                 var path = window.location.pathname;
                 var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
                 var devicePlatform = device.platform;
-                var media = new Media("audio/" + filename, null, console.log);
+                var media = new Media("audio/" + filename, 
+                    function () {
+                    media.release();
+                    }, console.log);
                 if (isBackgroundMusic) {
                     media.setVolume('0.5');
                 }

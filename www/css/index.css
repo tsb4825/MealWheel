@@ -100,16 +100,26 @@ p, div {
 .container-table {
     display: table;
 }
+.fullHeight {
+  min-height: 100%;  
+  min-height: 100vh;
+}
 .vertical-center-row {
-    display: table-cell;
-    vertical-align: middle;
+  min-height: 100%;  
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 .container-table {
     display: table;
 }
-.vertical-center-row {
-    display: table-cell;
-    vertical-align: middle;
+
+.fullWidth {
+	width: 100%
+}
+
+.yellowishBackground{
+	background-color: rgb(255, 242, 0);
 }
 
 .modal-transparent {

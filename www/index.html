@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 </head>
 <body>
-    <div id="homeScreen">
+    <div id="homeScreen" class="yellowishBackground fullHeight" style="display: none">
         <div>
             <h1>Meal Wheel of Destiny</h1>
         </div>
@@ -76,7 +76,7 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
     </div>
-    <div id="wheelScreen" style="display: none">
+    <div id="wheelScreen" class="yellowishBackground fullHeight" style="display: none">
         <h1>Meal Wheel of Destiny</h1>
         <!--wheel container-->
         <div id="container"></div>
@@ -100,9 +100,14 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
         </div>
-        <audio id="win" src="res/audio/ATone.wav" type="audio/wav"></audio>
-        <audio id="lose" src="res/audio/WhatYouEatin.wav" type="audio/wav"></audio>
-        <audio id="spin" src="res/audio/Applause1.wav" type="audio/wav"></audio>
+    <div id="splashScreen" class="yellowishBackground vertical-center-row text-center">
+        <div class="fullWidth">
+            <div>
+                <h2>Feeling Dangerous?</h2>
+                <h3>Give it a spin...</h3>
+            </div>
+        </div>
+    </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/kinetic-v4.4.1.min.js"></script>
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
