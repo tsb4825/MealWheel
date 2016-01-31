@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.wheelmeal" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Wheel Meal of Destiny</name>
+    <name>Meal Wheel of Destiny</name>
     <description>
         Tired of being completely indecisive when choosing somewhere to eat?  Frustrated by your significant other denying your restaurant 
         choice but never offering a suggestion of their own?  Are you also somewhat masochistic/sadistic?
         Then have I got an app for you!
-        Come spin the Wheel Meal of Destiny!!!
+        Come spin the Meal Wheel of Destiny!!!
         Enter a few of your favorite places to eat and one place you dare not stray to.  Let the wheel decide for you, but be prepared to
         pay the consequences for your wretched hesitancy!
     </description>
@@ -28,6 +28,7 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
+    <preference name="SplashScreen" value="none"/>
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.media-capture" />

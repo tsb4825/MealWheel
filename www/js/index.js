@@ -184,18 +184,18 @@ var app = {
                 var path = window.location.pathname;
                 var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
                 var devicePlatform = device.platform;
-                var media = new Media("audio/" + filename, 
+                var my_media = new Media("audio/" + filename, 
                     function () {
-                    media.release();
+                        my_media.release();
                     }, console.log);
                 if (isBackgroundMusic) {
-                    media.setVolume('0.5');
+                    my_media.setVolume('0.5');
                 }
                 if (isBackgroundMusic) {
-                    media.play({ numberOfLoops: 20 });
+                    my_media.play({ numberOfLoops: 20 });
                 }
                 else {
-                    media.play();
+                    my_media.play();
                 }
             }
         }
