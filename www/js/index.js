@@ -35,16 +35,11 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
+        if (isDevice()) {
+            navigator.splashscreen.hide();
+        }
         setTimeout(function () {
             showScreen("splash", "home");
-            //for (var i = 0; i < 6; i++) {
-            //addRestaurant("Kentucky Fried Chicken", true);
-            //addRestaurant("Chicken Express", true);
-            //addRestaurant("Mc Donalds", true);
-            //addRestaurant("Jack in the Box", true);
-            //addRestaurant("Smash Burger", true);
-            //addRestaurant("Chinese Super Buffet", false);
-            //}
             adMobService.setupAds();
 
             $('#addWedgeModal').on('shown.bs.modal', function () {
@@ -188,9 +183,6 @@ var app = {
                     function () {
                         my_media.release();
                     }, console.log);
-                if (isBackgroundMusic) {
-                    my_media.setVolume('0.5');
-                }
                 if (isBackgroundMusic) {
                     my_media.play({ numberOfLoops: 20 });
                 }
