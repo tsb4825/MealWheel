@@ -184,6 +184,7 @@ var app = {
                         my_media.release();
                     }, console.log);
                 if (isBackgroundMusic) {
+                    my_media.setVolume(.5);
                     my_media.play({ numberOfLoops: 20 });
                 }
                 else {

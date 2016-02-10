@@ -20,10 +20,10 @@ var adMobService = {
                 interstitial: 'ca-app-pub-xxx/yyy'
             };
         }
+        if (AdMob) AdMob.prepareInterstitial({ adId: self.admobid.interstitial, autoShow: false });
     },
     showAdInterstitial: function() {
         var self = this;
-        if (AdMob) AdMob.prepareInterstitial({ adId: self.admobid.interstitial, autoShow: false });
 
         if (AdMob) AdMob.showInterstitial();
     }
