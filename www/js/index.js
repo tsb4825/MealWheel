@@ -180,11 +180,11 @@ var app = {
                 var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
                 var devicePlatform = device.platform;
                 if (isBackgroundMusic) {
-                    my_background_media.setVolume(.5);
                     var my_background_media = new Media("audio/" + filename,
                     function () {
                         my_background_media.release();
                     }, console.log);
+                    my_background_media.setVolume(.5);
                     my_background_media.play({ numberOfLoops: 20, playAudioWhenScreenIsLocked: false });
                 }
                 else {
