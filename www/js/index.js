@@ -183,13 +183,14 @@ var app = {
                     function () {
                         my_media.release();
                     }, console.log);
-                if (isBackgroundMusic) {
-                    my_media.setVolume(.5);
-                    my_media.play({ numberOfLoops: 20, playAudioWhenScreenIsLocked: false });
-                }
-                else {
-                    my_media.play();
-                }
+                my_media.play({ playAudioWhenScreenIsLocked: false });
+                //if (isBackgroundMusic) {
+                //    my_media.setVolume(.5);
+                //    my_media.play({ numberOfLoops: 20, playAudioWhenScreenIsLocked: false });
+                //}
+                //else {
+                //    my_media.play({ playAudioWhenScreenIsLocked: false });
+                //}
             }
         }
 
