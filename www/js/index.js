@@ -98,7 +98,6 @@ var app = {
 
             playAudio('Audacity-NoName.mp3', true);
             playAudio('ATone.wav');
-            playAudio('ATone.wav');
         }, 2000);
 
         function Reset() {
