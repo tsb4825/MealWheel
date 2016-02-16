@@ -92,10 +92,6 @@ var app = {
             });
             $(window).on('resize', centerModals);
 
-            if (isDevice()) {
-                adMobService.showAdInterstitial();
-            }
-
             playAudio('Audacity-NoName.mp3', true);
             playAudio('Applause1.wav');
         }, 2000);
@@ -184,7 +180,7 @@ var app = {
                 if (isBackgroundMusic) {
                     var my_background_media = new Media("audio/" + filename,
                     function () {
-                        my_background_media.release();
+                        //my_background_media.release();
                     }, console.log);
                     my_background_media.setVolume(.5);
                     my_background_media.play({ numberOfLoops: 20, playAudioWhenScreenIsLocked: false });
@@ -192,7 +188,7 @@ var app = {
                 else {
                     var my_media = new Media("audio/" + filename,
                         function () {
-                            my_media.release();
+                            //my_media.release();
                         }, console.log);
                     my_media.play({ playAudioWhenScreenIsLocked: false });
                 }
