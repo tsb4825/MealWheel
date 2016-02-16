@@ -95,7 +95,10 @@ var app = {
             if (isDevice()) {
                 adMobService.showAdInterstitial();
             }
+
             playAudio('Audacity-NoName.mp3', true);
+            playAudio('ATone.wav');
+            playAudio('ATone.wav');
         }, 2000);
 
         function Reset() {
@@ -207,10 +210,6 @@ var app = {
         function isDevice() {
             return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
         }
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function (id) {
-
     },
     deleteRestaurant: function (text, isGoodRestaurant) {
         text = text.replace("*", "'");
