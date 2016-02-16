@@ -178,27 +178,19 @@ var app = {
                 var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
                 var devicePlatform = device.platform;
                 if (isBackgroundMusic) {
-                    var my_background_media = new Media("audio/" + filename,
-                    function () {
-                        //my_background_media.release();
-                    }, console.log);
-                    my_background_media.setVolume(.5);
-                    my_background_media.play({ numberOfLoops: 20, playAudioWhenScreenIsLocked: false });
+                    window.plugins.NativeAudio.preloadComplex( filename, 'audio/' + filename, .5, 1, 0, function(msg){
+                    }, function(msg){
+                        console.log( 'error: ' + msg );
+                    });
+                    window.plugins.NativeAudio.loop(filename);
                 }
                 else {
-                    var my_media = new Media("audio/" + filename,
-                        function () {
-                            //my_media.release();
-                        }, console.log);
-                    my_media.play({ playAudioWhenScreenIsLocked: false });
+                    window.plugins.NativeAudio.preloadSimple(filename, 'audio/' + filename, function (msg) {
+                    }, function (msg) {
+                        console.log('error: ' + msg);
+                    });
+                    window.plugins.NativeAudio.play(filename);
                 }
-                //if (isBackgroundMusic) {
-                //    my_media.setVolume(.5);
-                //    my_media.play({ numberOfLoops: 20, playAudioWhenScreenIsLocked: false });
-                //}
-                //else {
-                //    my_media.play({ playAudioWhenScreenIsLocked: false });
-                //}
             }
         }
 
