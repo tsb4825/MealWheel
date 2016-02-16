@@ -37,10 +37,11 @@ var app = {
     onDeviceReady: function () {
         if (isDevice()) {
             navigator.splashscreen.hide();
+            adMobService.setupAds();
+            loadAllAudio();
         }
         setTimeout(function () {
             showScreen("splash", "home");
-            adMobService.setupAds();
 
             $('#addWedgeModal').on('shown.bs.modal', function () {
                 $('#txtRestaurant').focus();
@@ -93,8 +94,26 @@ var app = {
             $(window).on('resize', centerModals);
 
             playAudio('Audacity-NoName.mp3', true);
-            playAudio('Applause1.wav');
         }, 2000);
+
+        function loadAllAudio() {
+            window.plugins.NativeAudio.preloadComplex('Audacity-NoName.mp3', 'audio/Audacity-NoName.mp3', .5, 1, 0, function (msg) {
+            }, function (msg) {
+                console.log('error: ' + msg);
+            });
+            window.plugins.NativeAudio.preloadSimple('Applause1.wav', 'audio/Applause1.wav', function (msg) {
+            }, function (msg) {
+                console.log('error: ' + msg);
+            });
+            window.plugins.NativeAudio.preloadSimple('ATone.wav', 'audio/ATone.wav', function (msg) {
+            }, function (msg) {
+                console.log('error: ' + msg);
+            });
+            window.plugins.NativeAudio.preloadSimple('WhatYouEatin.wav', 'audio/WhatYouEatin.wav', function (msg) {
+            }, function (msg) {
+                console.log('error: ' + msg);
+            });
+        }
 
         function Reset() {
             $(".winning").text("");
